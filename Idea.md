@@ -11,3 +11,8 @@ Application has been built with multilayer architecture to allow users to use it
 
 ## Technology
 Application has been prepared in C++ with Visual Studio 2022.
+
+### Note
+- In the ide there is configuration for `includePath` with two positions:
+    - `"${workspaceFolder}/**"`,
+    - `"${workspaceFolder}/core/include"`
