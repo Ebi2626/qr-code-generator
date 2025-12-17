@@ -1,16 +1,42 @@
 #pragma once
 #include "QrCode.hpp"
+#include "QrCodeVersion.hpp"
+#include "QrCodeMargin.hpp"
 #include <string>
 
-namespace qrgen::core {
+namespace qrgen::core
+{
 
-struct Options {
-    int version = 1;        // placeholder
-};
+    enum class OutputFormat
+    {
+        PNG,
+        JPG,
+        SVG
+    };
 
-class QrGenerator {
-public:
-    QrCode generate(const std::string& text, const Options& opt = {});
-};
+    enum class ErrorCorrectionLevel
+    {
+        L = 0,
+        M = 1,
+        Q = 2,
+        H = 3
+    };
 
-} // namespace qrgen::core
+    struct Options
+    {
+        std::string output = "qrcode.png";
+        int size = 8;
+        OutputFormat format = OutputFormat::PNG;
+        ErrorCorrectionLevel ecLevel = ErrorCorrectionLevel::L;
+        QrCodeVersion version = QrCodeVersion(1);
+        QrCodeMargin margin = QrCodeMargin(4);
+        std::string text = "";
+    };
+
+    class QrGenerator
+    {
+    public:
+        QrCode generate(const std::string &text, const Options &opt = {});
+    };
+
+}

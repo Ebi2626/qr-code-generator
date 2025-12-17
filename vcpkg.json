@@ -1,0 +1,9 @@
+{
+  "name": "qr-code-generator",
+  "version-string": "0.0.1",
+  "dependencies": [
+    "libqrencode",
+    "lodepng"
+  ],
+  "builtin-baseline": "37302273f63394714ba7e480a2785f7a5ba450d0"
+}

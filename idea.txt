@@ -1,0 +1,37 @@
+- input: string
+- output: PNG with qr-code
+
+- restrictions:
+    - string must be null terimanted (it should be done on our sied)
+    - string should be parsed on our side to UTF-8 lowercase only
+    - string should be validated against valid url
+    - string must be shorter than 501 characters    
+
+- output format should be:
+    - png
+    - jpg
+    - svg 
+
+    src/domain/
+
+QrCode.h/.cpp – struktura macierzy modułów.
+
+QrOptions.h – ECC, skala, margines itd.
+
+src/application/
+
+GenerateQr.h/.cpp – funkcja/klasa use-case.
+
+src/infrastructure/
+
+QrEncoderQrcodegen.h/.cpp – adapter do qrcodegen/libqrencode.
+
+QrPngWriter.h/.cpp – zapis do PNG/SVG.
+
+src/cli/
+
+main_cli.cpp – parsowanie argumentów, wołanie GenerateQr.
+
+src/gui/ (później)
+
+MainWindow.h/.cpp, main_gui.cpp – w slotach wywołujesz GenerateQr.

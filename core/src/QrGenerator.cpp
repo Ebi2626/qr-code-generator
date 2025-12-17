@@ -1,4 +1,22 @@
-#include "QrGenerator.hpp"
+#include "qrgen/QrGenerator.hpp"
+
+/* 
+* Reprezentuje warstwę logiki biznesowej
+* Powinna zawierać główne reguły biznesowe i logikę aplikacji
+* Powinna przekazywać do adapterów biblioteki znajdującej się w warstwie infrastruktury
+* komendy do generowania kodów QR
+* Nie powinna zawierać żadnych elementów interfejsu użytkownika ani dostępu do danych
+*/
+
+/*
+Reguły do zaimplementowania:
+- Generowanie kodu QR na podstawie podanego tekstu i opcji
+- Obsługa różnych poziomów korekcji błędów
+- Obsługa różnych wersji kodów QR
+- Walidacja wejściowych danych tekstowych
+- Zarządzanie pamięcią i zasobami związanymi z generowaniem kodów QR
+- Optymalizacja wydajności generowania kodów QR
+*/
 
 namespace qrgen::core {
 
