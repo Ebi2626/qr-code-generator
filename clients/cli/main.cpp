@@ -1,22 +1,30 @@
-#pragma once
-#include "qrgen/QrEncoderLibqrencode.hpp"
-#include <iostream>
-#include "qrgen/parseInput.hpp"
+#include <memory>
+#include <string>
+#include <span>
+#include <qrgen/ports/IQrGeneratorService.hpp>
+#include <qrgen/services/QrGeneratorService.hpp>
+#include <adapters/LibqrencodeAdapter.hpp>
+#include <adapters/PngExporter.hpp>
+#include "CliArgumentParser.hpp"
 
-/* Stanowi wejście do aplikacji i warstwę prezentacji  
-* Wywołuje elementy z katalogu core - gdzie znajduje się logika biznesowa
-* Powinna być cienkim wrapperem nad core
-* Powinna udostępniać interfejs użytkownika (np. CLI, GUI, API itp.)
-* Nie powinna wykonywać żadnych elementów logiki biznesowej ani dostępu do danych
-* Powinna być odpowiedzialna za interakcję z użytkownikiem i prezentację
-*/
+int main(int argc, char *argv[])
+{
+    auto encoder = std::make_shared<qrgen::adapters::LibqrencodeAdapter>();
+    auto exporter = std::make_shared<qrgen::adapters::PngExporter>();
 
+    auto service = std::make_shared<qrgen::core::services::QrGeneratorService>(
+        encoder,
+        exporter);
 
-int main(int argc, char* argv[]) {
-    qrgen::infra::QrEncoderLibqrencode encoder;
-    qrgen::core::Options opt{};
+    auto args = std::span<std::string_view>{argv, static_cast<size_t>(argc)};
 
-    std::vector<std::string> args(argv, argv + argc);
-    qrgen::core::Options options = qrgen::cli::parseInput(args);
-    encoder.encode(options);
+    CliArgumentParser parser;
+    auto options = parser.parse(args);
+
+    service->generateAndExport(
+        options.text,
+        options,
+        options.outputPath);
+
+    return 0;
 }
