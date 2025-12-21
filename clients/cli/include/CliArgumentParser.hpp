@@ -9,7 +9,7 @@ struct RawOptions
     std::optional<std::string> output;
     std::optional<int> size;
     std::optional<std::string> format;
-    std::optional<int> ecLevel;
+    std::optional<std::string> ecLevel;
     std::optional<int> version;
     std::optional<int> margin;
     std::string text;

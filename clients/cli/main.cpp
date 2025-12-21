@@ -1,11 +1,14 @@
 #include <memory>
 #include <string>
 #include <span>
-#include <qrgen/ports/IQrGeneratorService.hpp>
-#include <qrgen/services/QrGeneratorService.hpp>
-#include <adapters/LibqrencodeAdapter.hpp>
-#include <adapters/PngExporter.hpp>
+#include <IQrGeneratorService.hpp>
+#include <QrGeneratorService.hpp>
+#include <LibqrencodeAdapter.hpp>
+#include <PngExporter.hpp>
 #include "CliArgumentParser.hpp"
+#include "QrCodeValidator.hpp"
+#include "Help.hpp"
+#include "CliHelp.hpp"
 
 int main(int argc, char *argv[])
 {
@@ -16,10 +19,20 @@ int main(int argc, char *argv[])
         encoder,
         exporter);
 
+    std::unique_ptr<Help> help; 
+    help = std::make_unique<CliHelp>();
+
     auto args = std::span<std::string_view>{argv, static_cast<size_t>(argc)};
 
     CliArgumentParser parser;
-    auto options = parser.parse(args);
+    auto rawOptions = parser.parse(args);
+
+    if(rawOptions.helpRequested) {
+        help->displayHelp();
+    }
+
+    QrCodeValidator validator;
+    auto options = validator.validate(rawOptions);
 
     service->generateAndExport(
         options.text,

@@ -1,6 +1,8 @@
 add_executable(qrgen-cli
     main.cpp
     src/CliArgumentParser.cpp
+    src/QrCodeValidator.cpp
+    src/CliHelp.cpp
 )
 
 target_link_libraries(qrgen-cli

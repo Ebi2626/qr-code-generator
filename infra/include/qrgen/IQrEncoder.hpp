@@ -1,7 +1,7 @@
 #pragma once
 
-#include "qrgen/QrCode.hpp"
-#include "qrgen/QrGenerator.hpp"
+#include <QrCode.hpp>
+#include <QrGenerator.hpp>
 #include <string>
 
 namespace qrgen::infra

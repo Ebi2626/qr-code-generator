@@ -1,12 +1,14 @@
 #pragma once
 
-#include "qrgen/IQrEncoder.hpp"
+#include <IQrEncoder.hpp>
 
-namespace qrgen::infra {
+namespace qrgen::infra
+{
 
-class QrEncoderLibqrencode : public IQrEncoder {
-public:
-    qrgen::core::QrCode encode(
-        const qrgen::core::Options& opt) override;
-};
-} 
+    class QrEncoderLibqrencode : public qrgen::infra::IQrEncoder
+    {
+    public:
+        qrgen::core::QrCode encode(
+            const qrgen::core::Options &opt);
+    };
+}

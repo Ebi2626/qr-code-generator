@@ -4,7 +4,7 @@ Simple app to generate QR-Codes.
 ![Przykładowy QR](repo.png)
 
 ## Prerequisties
-To build project you will need Cmake and MSVC. Before building there is need to download dependencies via vcpkg: `vcpkg install libqrencode`
+To build project you will need Cmake and MSVC. Before building there is need to download dependencies via vcpkg: `vcpkg install libqrencode lodepng`
 
 ## Building
 To build project .exe files there are two required steps:

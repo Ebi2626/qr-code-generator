@@ -1,4 +1,4 @@
-#include "../include/CliArgumentParser.hpp"
+#include <CliArgumentParser.hpp>
 #include <span>
 #include <iostream>
 #include <charconv>
@@ -102,7 +102,7 @@ namespace qrgen::cli
                 case OptionType::EC_LEVEL:
                     if (i + 1 < args.size())
                     {
-                        options.ecLevel = parseInt(args[++i]);
+                        options.ecLevel = args[++i];
                     }
                     break;
 

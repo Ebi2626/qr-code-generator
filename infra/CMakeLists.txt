@@ -21,7 +21,7 @@ target_include_directories(qrgen_infra
     # Ścieżka do nagłówków dla samego qrgen_infra (Twój kod)
     PUBLIC
         # Dostęp do nagłówków wewnątrz infra/include (np. dla innych, którzy z infra korzystają)
-        ${CMAKE_CURRENT_SOURCE_DIR}/include
+        ${CMAKE_CURRENT_SOURCE_DIR}/include/qrgen
 
     # Ustawienie nagłówka 'qrgen/...'
     # Dodanie katalogu głównego projektu, aby kompilator znalazł 'qrgen/'
